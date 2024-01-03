@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import "./index.css";
 
 
@@ -112,28 +113,34 @@ import "./index.css";
 // }
 
 
+
+// -------------------------------- Form part of React ----------------------------------------
+
+    //   ->> here we give ainput text and after submitting it shows in the above h1 text
+
 const UseState = ()=>{
 
-    var text = "Hello";
-    var newtxt = "Pranav kumar";
+    const [mytxt, Updatetxt] = useState("");
+    const [fullmytxt,NewUpdatetext] = useState();
 
-    const [mytxt, Updatetxt] = useState(newtxt);
+    const ChangeText = (event)=>{
+        Updatetxt(event.target.value);
+    }
 
-    const ChangeText = ()=>{
-        
+    const submitText = ()=>{
+        NewUpdatetext(mytxt);
+
     }
     return(
         <>
         <div className="container" id="box-1" >
-            <h1 className="head_txt">Hello {newtxt}</h1>
-            <input type="text" name="" id="inpt" />
-            <button onClick={ChangeText}>Submit</button>
+            <h1 className="head_txt">Hello {fullmytxt}</h1>
+            <input type="text" name="" id="inpt" placeholder="Enter your Name" onChange={ChangeText} />
+            <button onClick={submitText}>Submit</button>
         </div>
         
         </>
     );
 }
-
-
 
 export default UseState;
