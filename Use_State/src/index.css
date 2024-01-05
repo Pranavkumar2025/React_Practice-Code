@@ -3,16 +3,17 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 98vw;
-    height: 98vh;    
+    border: 6px solid black; 
+    border-radius: 10px;  
+    padding: 10px;
 }
 button{
     width: 80px;
     height: 40px;
-    background-color: blueviolet;
-    border: 5px sol black;
-    color: white;
+    background-color: rgb(156, 100, 209);
+    border: 5px solid black;
     border-radius: 5px;
+    border-color: greenyellow;
 }
 
 #box-1{
@@ -24,4 +25,10 @@ button{
     width: 300px;
     border: 4px solid black;
     border-radius: 8px;
+}
+.h1_txt{
+    text-align: center;
+}
+button{
+    margin-left: 140px;
 }
