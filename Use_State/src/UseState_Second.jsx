@@ -53,12 +53,16 @@ import styled from "styled-components";
 
 
 const UseStateObject = () => {
+
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     confirm_password: "",
   });
+
+  const [submitdata, finalData] = useState(formData);
 
   const handleInput = (event) => {
     const name = event.target.name;
@@ -70,13 +74,16 @@ const UseStateObject = () => {
     });
   };
 
+  const Mysubmit = ()=>{
+    finalData(formData);
+  }
   return (
     <Wrapper>
       <div className="container">
         <div className="card">
           <h2 className="card-title text-center">Register</h2>
           <div className="card-body py-md-4">
-            <form>
+            <form onSubmit={Mysubmit}>
               <div className="form-group">
                 <input
                   type="text"
@@ -127,11 +134,11 @@ const UseStateObject = () => {
                 />
               </div>
               <div className="d-flex flex-row align-items-center justify-content-between">
-                <button className="btn btn-primary">Create Account</button>
+                <button className="btn btn-primary" type="submit" >Create Account</button>
               </div>
             </form>
             <div>
-              <p>{`My name is ${formData.username} and email is ${formData.email}`}</p>
+              <p>{`My name is ${submitdata.username} and email is ${submitdata.email}`}</p>
             </div>
           </div>
         </div>
