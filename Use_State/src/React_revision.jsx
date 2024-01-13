@@ -4,25 +4,38 @@ import './React_revision.css';
 
 const React_revision = ()=>{
     // const name = "Pranav Kumar";
-    const[myName,setMyName]=useState("Pranav Kumar");
 
-    const[inptName,setinptName]=useState();
+    const [fullName,setfulName] = useState({
+        fname:"",
+        lname:"",
+        Email:""
+    });
 
-    const inputChange = (resp)=>{
-        
+    const inputEvent = (event)=>{
+        setfulName(event.targt.value);
     }
+
+
     
+    const onSubmit = ()=>{
+        alert("Your submitted the form");
+    }
 
 
-
+ 
     return(
         <>
            <div className="box">
 
             <h1>Hello everyone What is your name. </h1>
-            <h1>My name is {myName}</h1>
-            <input type="text" name="" id=""  onChange={inputChange}/>
+            <h1>My name is {fullName.fname} {fullName.lname} </h1>
+            <p>Your Email id: {fullName.Email}</p>
+            <form onSubmit={onSubmit}>
+            <input type="text" name="fname" id=""  onChange={inputEvent} placeholder="Enter your First name"/>
+            <input type="text" name="lname" id=""  onChange={inputEvent} placeholder="Enter your last name"/>
+            <input type="email" name="email" id="" onChange={inputEvent} placeholder="Enter your Email id.."/>
             <button> Click Me</button>
+            </form>
 
            </div>
         </>

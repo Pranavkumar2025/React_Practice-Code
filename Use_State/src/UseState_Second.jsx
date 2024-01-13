@@ -11,7 +11,7 @@ import styled from "styled-components";
 
                 //   >>> but here use of UseState is very more
 
-// const UseState_Second = ()=>{
+//   const UseStateObject = ()=>{
 
 //     const[name,SetName] = useState(" ");
 //     const[LastName,SetLastName] = useState(" ");
@@ -49,12 +49,19 @@ import styled from "styled-components";
 //         </>
 //     );
 // }
+// export default UseStateObject;
 
 
 
+
+
+
+
+
+// 2.----------------------------->> This is the last and best form of {UseState}------------------
+ 
+              // -->Where i used to make our long code in sort form by usein some Operator
 const UseStateObject = () => {
-
-
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -62,28 +69,106 @@ const UseStateObject = () => {
     confirm_password: "",
   });
 
-  const [submitdata, finalData] = useState(formData);
-
   const handleInput = (event) => {
-    const name = event.target.name;
+    // const name = event.target.name;
+    //const value = event.target.value;
 
-    const value = event.target.value;
-
-    setFormData((prev) => {
-      return { ...prev, [name]: value };
+    setFormData((formData) => {
+      return { ...formData, [event.target.name]: event.target.value };
     });
   };
 
-  const Mysubmit = ()=>{
-    finalData(formData);
+  const[submitData,SetsubmitData] = useState({});
+
+  const onSubmit = (e)=>{
+    e.preventDefault();
+    SetsubmitData(formData);
   }
-  return (
+//----------- Without using { handleInput() function } we can write this code in this Way---------------
+
+            // --->>For Running this portion of Code firstly Comment it handleInput function
+    // return (
+    //   <Wrapper>
+    //     <div className="container">
+    //       <div className="card">
+    //         <h2 className="card-title text-center">Register</h2>
+    //         <div className="card-body py-md-4">
+    //           <form onSubmit={onSubmit}>
+    //             <div className="form-group">
+    //               <input
+    //                 type="text"
+    //                 className="form-control"
+    //                 id="name"
+    //                 name="username"
+    //                 placeholder="Name"
+    //                 autoComplete="off"
+    //                 value={formData.username}
+    //                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+    //               />
+    //             </div>
+    //             <div className="form-group">
+    //               <input
+    //                 type="email"
+    //                 className="form-control"
+    //                 id="email"
+    //                 name="email"
+    //                 autoComplete="off"
+    //                 placeholder="Email"
+    //                 value={formData.email}
+    //                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+    //               />
+    //             </div>
+    //           <div className="form-group">
+    //               <input
+    //                 type="password"
+    //                 className="form-control"
+    //                 id="password"
+    //                 name="password"
+    //                 placeholder="Password"
+    //                 autoComplete="off"
+    //                 value={formData.password}
+    //                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+    //               />
+    //           </div>
+    //           <div className="form-group">
+    //              <input
+    //                 type="password"
+    //                 className="form-control"
+    //                 id="confirm-password"
+    //                 name="confirm_password"
+    //                 placeholder="confirm-password"
+    //                 autoComplete="off"
+    //                 value={formData.confirm_password}
+    //                 onChange={(e) => setFormData({ ...formData, confirm_password: e.target.value })}
+    //              />
+    //           </div>
+                
+    //             {/* ... (other form inputs) ... */}
+    //             <div className="d-flex flex-row align-items-center justify-content-between">
+    //               <button className="btn btn-primary">Create Account</button>
+    //             </div>
+    //           </form>
+    //           <div>
+    //             {/* Conditionally render the paragraph only when submitData is populated */}
+    //             {submitData.username && submitData.email && submitData.password && (
+    //                 <p>{`Name: ${submitData.username}, Email: ${submitData.email}, Password: ${submitData.password}`}</p>
+    //             )}
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </Wrapper>
+    // );
+
+    // <<<----- This Portion of Code by using {handleInput() function }----->>>
+
+return(
     <Wrapper>
       <div className="container">
         <div className="card">
           <h2 className="card-title text-center">Register</h2>
           <div className="card-body py-md-4">
-            <form onSubmit={Mysubmit}>
+            <form onSubmit={onSubmit}>
               <div className="form-group">
                 <input
                   type="text"
@@ -134,11 +219,13 @@ const UseStateObject = () => {
                 />
               </div>
               <div className="d-flex flex-row align-items-center justify-content-between">
-                <button className="btn btn-primary" type="submit" >Create Account</button>
+                <button className="btn btn-primary">Create Account</button>
               </div>
             </form>
             <div>
-              <p>{`My name is ${submitdata.username} and email is ${submitdata.email}`}</p>
+            {submitData.username && submitData.email && submitData.password && (
+            <p>{`Name: ${submitData.username}, Email: ${submitData.email}, Password: ${submitData.password}`}</p>
+            )}
             </div>
           </div>
         </div>
@@ -147,13 +234,18 @@ const UseStateObject = () => {
   );
 };
 
+
+// ---->>  --> This is CSS styled section--------->>>
+
 const Wrapper = styled.section`
   .container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(156, 100, 209);
+    border: none;
+    background-color: rgb(220, 129, 243) ;
+    border: 3.5px solid black;
   }
   h2 {
     font-size: 2.4rem;
@@ -168,9 +260,10 @@ const Wrapper = styled.section`
   }
   .card {
     // border: 0.1rem solid #f8f9fa;
-    border: 5px solid black;
-    border-radius: 5px;
     padding: 0 3.2rem;
+    border: 3px solid black;
+    background-color: rgb(109, 227, 227);
+    border-radius: 8px;
   }
 
   form {
@@ -211,3 +304,4 @@ const Wrapper = styled.section`
 `;
 
 export default UseStateObject;
+
