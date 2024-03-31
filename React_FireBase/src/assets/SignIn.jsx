@@ -18,7 +18,7 @@ const SignIn = () => {
 
     const SignGoogle =  ()=>{
         signInWithPopup(auth,provider); 
-    }
+    } 
 
   return (
     <div>
