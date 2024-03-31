@@ -11,7 +11,7 @@ const SignUp = () => {
     const ClickFunc = ()=>{
         createUserWithEmailAndPassword(auth,email,password).catch(()=>alert("Account Created succesfull"));
     }
-
+ 
   return (
     <div>
       <div>
