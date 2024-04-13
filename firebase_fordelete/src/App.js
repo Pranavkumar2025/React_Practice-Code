@@ -14,7 +14,7 @@ const App = () => {
   return (
     <div>
       <h1>Hello FireBase I am Back</h1>
-      <button onClick={putData}>Put Data</button>
+      <button onClick={putData}>Put Data</button> 
     </div>
   )
 }
