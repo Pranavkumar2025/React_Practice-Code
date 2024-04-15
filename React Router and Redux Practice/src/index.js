@@ -12,6 +12,7 @@ import About from './Router/About';
 import Service from './Router/Service';
 import MyCartStore from './Components/MyCartStore';
 import App from './App';
+import Context from './Router/Context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
           <Route path="/about" element={<About/>} />
           <Route path="/service" element={<Service />} />
           <Route path='/cart' element = {<MyCartStore/>}/>
+          <Route path='/context' element = {<Context/>} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>
