@@ -1,33 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { app } from "./Firebase";
+import { getAuth,createUserWithEmailAndPassword } from "firebase/auth";
 import './App.css'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const auth = getAuth(app);
+  const [email,setEmail] = useState("");
+  const[password,setPassword] = useState("");
 
+  const putData = ()=>{
+    createUserWithEmailAndPassword(auth,email,password);
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <h1>firebase</h1>
+    <h3>Email id: </h3>
+    <input type="email" name="" id="" onChange={(e)=>setEmail(e.target.value)}/>
+    <h3>Password</h3>
+    <input type="password" name="" id="" onChange={(e)=>setPassword(e.target.value)}/><br/>
+    <button onClick={putData}>Sign Up</button>
     </>
   )
 }
